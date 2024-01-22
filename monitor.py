@@ -1,6 +1,7 @@
 # base de dados distribuída
 import rpyc
 import datetime
+import os
 
 class MonitorService(rpyc.Service):
     def on_connect(self, conn):
@@ -64,6 +65,8 @@ def list_active():
 
 def alive_from_list(address_list):
     return [address for address in address_list if is_alive(address)]
+
+#Implementar "pub-sub" para mandar toda hora para o loadbalance quem está vivo e quem morreu
 
 # Inicializa o servidor de objeto remoto e o registra no serviço de nomes
 if __name__ == "__main__":
